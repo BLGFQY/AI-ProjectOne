@@ -9,14 +9,20 @@ def evaluation(hand):
 
     score = 0
 
-    print("hand = ", hand)
-    print("hand slice = ", hand[3:])
-    for i in range(1, 14):
+    for i in range(1, 13):
         # score primary player hand
-        if hand[i][0] == 1: score += 4
-        if hand[i][0] == 13: score += 3
-        if hand[i][0] == 12: score += 2
-        if hand[i][0] == 11: score += 1
+        if hand[i][0] == 1:
+            score += 4
+            print(+4)
+        if hand[i][0] == 13:
+            score += 3
+            print(+3)
+        if hand[i][0] == 12:
+            score += 2
+            print(+2)
+        if hand[i][0] == 11:
+            score += 1
+            print(+1)
 
         # count number of each suit
         if hand[i][1] == "Clubs": distr[0] += 1
@@ -27,13 +33,21 @@ def evaluation(hand):
     # score number of suits
     size = len(distr)
     for k in range(size):
-        if distr[k] == 0: score += 5
-        if distr[k] == 1: score += 2
-        if distr[k] == 2: score += 1
+        if distr[k] == 0:
+            score += 5
+            print(+5)
+        if distr[k] == 1:
+            score += 2
+            print(+2)
+        if distr[k] == 2:
+            score += 1
+            print(+1)
 
     return score
 
+
 print("Cards appear as follows:\n   1(Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11(Jack), 12(Queen), 13(King)\n")
+ # Ace (1) (+4) | Jack (11) (+1) | Queen (12) (+2) | King (13) (+3) | doubleton (+1) | singleton (+2) | void (+5)
 
 totalHands = 1000
 play = True
@@ -49,13 +63,10 @@ while play:
     random.shuffle(deck)
 
     # primary player hand variables
-    primary = [] # hold cards in hand
-    score = 0
-
-    primary.append(deck[:13])
-    deck = deck[13:]
-
+    primary = deck[:13] # hold cards in hand
+    deck = deck[13:]    # deletes primary hand from deck
     score = evaluation(primary)
+
     # variable to hold number of each suit in a hand
     #   Clubs, Spades, Diamonds, Hearts
     # distr = [0, 0, 0, 0]
